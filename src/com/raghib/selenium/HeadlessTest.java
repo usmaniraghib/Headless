@@ -3,7 +3,6 @@ package com.raghib.selenium;
 /* REFERENCE
 https://www.youtube.com/watch?v=Mvg08wMy5iE
  */
-import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
