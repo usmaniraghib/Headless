@@ -1,35 +1,33 @@
 package com.raghib.selenium;
 
+import java.time.Duration;
+
 /* REFERENCE
 https://www.youtube.com/watch?v=Mvg08wMy5iE
  */
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+public class HeadlessTest extends BaseClass {
 
-public class HeadlessTest {
-
+	public static WebDriver driver;
+	public static String browserName = "chrome";
+	public static String browserVersion = "116";
+	
+	public static String url = "https://www.google.com/";
+	
 	public static void main(String[] args) {
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--remote-allow-origins=*");
-		
+		// Chrome Browser
+		driver = BaseClass.getDriver(browserName, browserVersion);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		driver.manage().window().maximize();
+		driver.get(url);
+
 		// options.setHeadless(true); //In Selenium version 4.8.0 its Deprecated.
 		// options.setHeadless(false); //In Selenium version 4.8.0 its Deprecated.
-		options.addArguments("--headless=new");
+		// options.addArguments("--headless=new"); //In Selenium version 4.9.0 own words.
 		
-		WebDriverManager.chromedriver().setup();
-		WebDriver driver = new ChromeDriver(options);
-
-//		Duration duration = Duration.ofSeconds(30);		
-//		driver.manage().timeouts().implicitlyWait(duration);
-//		driver.manage().timeouts().pageLoadTimeout(duration);
-
-		driver.get("https://www.google.com/");
-
 		System.out.println("Page Title : " + driver.getTitle());
-		driver.quit();
+		BaseClass.quitDriver();
 	}
 }
